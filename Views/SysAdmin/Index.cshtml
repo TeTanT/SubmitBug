@@ -1,0 +1,78 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<SubmitBug.Models.TB_BugSubmit>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("安排工单", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.LoginOn.LoginNo)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Claimant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ComputerNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SubDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LIP)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.LoginOn.LoginNo)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Claimant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComputerNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LIP)
+            </td>
+
+            <td>
+                @Html.ActionLink("分配工单", "Edit", new { id = item.BId })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

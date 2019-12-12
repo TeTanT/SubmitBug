@@ -1,0 +1,60 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<SubmitBug.Models.TB_Follow>
+
+@{
+    ViewBag.Title = "LateFollow";
+}
+
+<table class="table table-bordered table-condensed table-hover table-striped">
+    逾期工单
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.Claimant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.LPhone)
+        </th>
+
+        <th>
+            跟进人员
+        </th>
+        <th>
+            计划完成时间
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Claimant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.LPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginOn.LoginName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FollowDate)
+            </td>
+
+        </tr>
+    }
+
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("LateFollow", new { page }))
+

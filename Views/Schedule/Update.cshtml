@@ -1,0 +1,43 @@
+﻿@model SubmitBug.Models.TB_Schedule
+
+@{
+    ViewBag.Title = "Update";
+}
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BugSubmit.AppName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BugSubmit.AppName)
+            </dd>
+            <dt>
+                跟进人员
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Follow.LoginOn.LoginName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FinishDate)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="确认完成" class="btn btn-default" /> 
+            
+            </div>
+        }
+    </div>

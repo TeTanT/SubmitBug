@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SubmitBug.Models.TB_ShowMenu>
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+@foreach (var item in Model)
+{
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuName)
+        </td>
+       
+    </tr>
+}

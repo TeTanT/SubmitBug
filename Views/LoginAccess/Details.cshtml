@@ -1,0 +1,66 @@
+﻿@model SubmitBug.Models.TB_LoginOn
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_LoginOn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccess.AccessName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccess.AccessName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginPwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginPwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

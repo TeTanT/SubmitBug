@@ -1,0 +1,105 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<SubmitBug.Models.TB_Schedule>
+
+@{
+    ViewBag.Title = "SelectList";
+}
+<hr />
+<form asp-controller="Home" asp-action="SelectList" method="get">
+    <p>
+        跟进人员：@Html.DropDownList("LoginName", ViewData["Select"] as SelectList, "  ", @ViewData["CurrentFilter"])
+        @*<input value="@ViewData["CurrentFilter"]">*@
+        起始时间：
+        <input type="date" name="STime" value="@ViewData["CurrentST"]">
+        结束时间：
+        <input type="date" name="ETime" value="@ViewData["CurrentET"]">
+        <input type="submit" value="查询" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.Describe)
+        </th>
+        <th>
+            申请人
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.SubDate)
+        </th>
+        <th>
+            跟进人员
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Follow.FollowDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().FinishDate)
+        </th>
+        @if (Session["LoginName"] != null)
+        {
+            var AId = ((SubmitBug.Models.TB_LoginOn)Session["LoginName"]).AId;
+            if (AId == 2 || AId == 3)
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Follow.Difficultity.DLevel)
+                </th>
+
+            }
+        }
+    </tr>
+    @{
+        int i = 0;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(i += 1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BugSubmit.AppName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BugSubmit.Describe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BugSubmit.Claimant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BugSubmit.SubDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Follow.LoginOn.LoginName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Follow.FollowDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                @if (Session["LoginName"] != null)
+                {
+                    var AId = ((SubmitBug.Models.TB_LoginOn)Session["LoginName"]).AId;
+                    if (AId == 2 || AId == 3)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Follow.Difficultity.DLevel)
+                        </td>
+
+                    }
+                }
+
+            </tr>
+        }
+    }
+</table>
+Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("SelectList", new { page, currentFilter = ViewBag.CurrentFilter, currentST = ViewBag.CurrentST, currentET = ViewBag.CurrentET }))

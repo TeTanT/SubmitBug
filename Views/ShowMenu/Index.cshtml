@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SubmitBug.Models.TB_ShowMenu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccess.AccessName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccess.AccessName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenuName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MId }) |
+           
+            @Html.ActionLink("Delete", "Delete", new { id=item.MId })
+        </td>
+    </tr>
+}
+
+</table>

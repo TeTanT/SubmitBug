@@ -1,0 +1,58 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<SubmitBug.Models.TB_Schedule>
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.Claimant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.LPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().BugSubmit.ComputerNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Follow.LoginOn.LoginName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Claimant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.LPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.ComputerNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Follow.LoginOn.LoginName)
+            </td>
+            <td>
+                @Html.ActionLink("确认完成", "Update", new { id = item.SId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

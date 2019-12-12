@@ -1,0 +1,72 @@
+﻿@model SubmitBug.Models.TB_LoginOn
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TB_LoginOn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccess.AccessName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccess.AccessName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginPwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginPwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComputerNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComputerNo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,56 @@
+﻿@model SubmitBug.Models.TB_BugSubmit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div>
+        <hr />
+        
+        @if (!string.IsNullOrWhiteSpace(@Html.DisplayFor(model => model.Follow.SingleOrDefault().LoginOn.LoginName).ToString()))
+        {
+            <h2>项目正在跟进中。。。</h2>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppName)
+        </dd>
+        <dt>
+            跟进人员
+        </dt>
+
+        <dd>
+            @{
+                var Lg = @Html.DisplayFor(model => model.Follow.SingleOrDefault().LoginOn.LoginName);
+            }
+
+            @Html.ActionLink(Lg.ToHtmlString(), "LoginNameList", new { Lg = Lg })
+            @*@Html.ActionLink("完成工单", "Edit", new { id = item.FId })*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Follow.SingleOrDefault().Schedule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Follow.SingleOrDefault().Schedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Follow.SingleOrDefault().FollowDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Follow.SingleOrDefault().FollowDate)
+        </dd>
+    </dl>
+                }
+                else
+                {
+                    <h2>该工单暂时无法安排人员跟进，请您稍后再来查询！</h2>
+                }
+    </div>
+<p>
+    @Html.ActionLink("Back to List", "Index","Home")
+</p>

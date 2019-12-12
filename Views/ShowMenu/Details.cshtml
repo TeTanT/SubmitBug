@@ -1,0 +1,34 @@
+﻿@model SubmitBug.Models.TB_ShowMenu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TB_ShowMenu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAccess.AccessName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAccess.AccessName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MenuName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

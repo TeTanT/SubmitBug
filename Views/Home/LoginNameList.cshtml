@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SubmitBug.Models.TB_Follow>
+
+@{
+    ViewBag.Title = "Index";
+}
+<label>@ViewData["info"]</label>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BugSubmit.AppName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BugSubmit.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BugSubmit.Claimant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BugSubmit.LPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BugSubmit.ComputerNo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.AppName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.Claimant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.LPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BugSubmit.ComputerNo)
+            </td>
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.FId }) |
+        @Html.ActionLink("明细", "Details", new { id = item.FId }) |*@
+                @if (Session["LoginName"] != null)
+                {
+                    @Html.ActionLink("完成工单", "Edit", new { id = item.FId })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("新建工单", "Create", "Home")
+</p>

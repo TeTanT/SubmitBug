@@ -1,0 +1,50 @@
+﻿@model SubmitBug.Models.TB_Follow
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            @if (!string.IsNullOrWhiteSpace(@Html.DisplayFor(model => model.LoginOn.LoginName).ToString()))
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.BugSubmit.AppName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BugSubmit.AppName)
+                </dd>
+                <dt>
+                    跟进人员
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LoginOn.LoginName)
+                </dd>
+
+                <dt>
+                    完成时间
+                </dt>
+
+                <dd>
+                    @*@Html.DisplayFor(model => model.FollowDate)*@
+                    @Html.EditorFor(model => model.FollowDate, new { htmlAttributes = new { @class = "form-control" } })
+                </dd>
+            }
+
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+            </div>
+        }
+    </div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.FId }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

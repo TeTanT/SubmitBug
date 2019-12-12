@@ -1,0 +1,44 @@
+﻿@model SubmitBug.Controllers.AccountController.InputLogin
+
+@{
+    ViewBag.Title = "用户登录：";
+}
+<label>用户登录:@ViewData["info"]</label>
+@using (Html.BeginForm())
+{
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LoginNo, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.LoginNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LoginNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.LoginPwd, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.LoginPwd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LoginPwd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="登录" class="btn btn-default" />
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("注册新用户", "Register")
+        </p>
+    </div>
+    @* 在为密码重置功能启用了帐户确认后，启用此项
+        <p>
+            @Html.ActionLink("忘记了密码?", "ForgotPassword")
+        </p>*@
+}
+
+

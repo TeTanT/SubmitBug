@@ -1,0 +1,62 @@
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.IPagedList<SubmitBug.Models.TB_LoginOn>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>权限列表</h2>
+
+<p>
+    @Html.ActionLink("新建权限", "Create", "UserAccess")
+</p>
+重置后的密码为：123456
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UserAccess.AccessName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LoginNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LoginName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ComputerNo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAccess.AccessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComputerNo)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.LId }) |
+                @Html.ActionLink("重置密码", "SetPwd", new { id = item.LId }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.LId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
